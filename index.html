@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDPA Sri Lanka — Interactive Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0D0F12;
+  --ink2: #1C2028;
+  --ink3: #2A303C;
+  --gold: #C9902A;
+  --gold-light: #E8B84B;
+  --cream: #F5F0E8;
+  --cream2: #EDE6D6;
+  --muted: #8A8F9A;
+  --danger: #C0392B;
+  --safe: #1A7A4A;
+  --border: rgba(201,144,42,0.18);
+  --radius: 4px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--ink2);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,144,42,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-top { display: flex; align-items: flex-start; gap: 1.2rem; max-width: 900px; }
+.header-flag {
+  width: 48px; height: 48px;
+  background: var(--gold);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.header-text {}
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+.header-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 3px 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold-light);
+}
+.penalty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(192,57,43,0.15);
+  border: 1px solid rgba(192,57,43,0.3);
+  border-radius: 2px;
+  padding: 3px 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: #E8766A;
+}
+
+/* ── NAV ── */
+.nav {
+  background: var(--ink2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.85rem 1.1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+  letter-spacing: 0.02em;
+}
+.nav-btn:hover { color: var(--cream2); }
+.nav-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+/* ── CONTENT ── */
+.content { max-width: 900px; margin: 0 auto; padding: 2rem; }
+.tab { display: none; }
+.tab.active { display: block; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1rem;
+}
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.card-title .ref {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  background: rgba(201,144,42,0.1);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 400;
+}
+.card p { font-size: 0.85rem; color: var(--cream2); line-height: 1.7; }
+.card p + p { margin-top: 0.6rem; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 2rem 0 0.8rem;
+}
+.section-label:first-child { margin-top: 0; }
+
+/* ── STAT GRID ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.stat-card {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+}
+.stat-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.3rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+.stat-value { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--gold-light); line-height: 1.2; }
+.stat-sub { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
+
+/* ── DEFINITION LIST ── */
+.def-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.def-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--ink3);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.83rem;
+}
+.def-term { font-weight: 500; color: var(--gold-light); font-family: 'DM Mono', monospace; font-size: 0.78rem; }
+.def-def { color: var(--cream2); line-height: 1.6; }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+.t-event { position: relative; padding: 0 0 1.5rem 1.5rem; }
+.t-dot {
+  position: absolute;
+  left: -1.85rem; top: 4px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--ink);
+}
+.t-date { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold); margin-bottom: 0.2rem; }
+.t-title { font-weight: 500; font-size: 0.88rem; color: var(--cream); margin-bottom: 0.2rem; }
+.t-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+/* ── OBLIGATIONS ── */
+.ob-grid { display: flex; flex-direction: column; gap: 0.6rem; }
+.ob-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.2rem;
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.ob-item:hover { border-color: rgba(201,144,42,0.4); }
+.ob-item.open { border-color: var(--gold); }
+.ob-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  background: rgba(201,144,42,0.1);
+  border: 1px solid var(--border);
+  width: 36px; height: 36px;
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+.ob-main { flex: 1; }
+.ob-title { font-size: 0.88rem; font-weight: 500; color: var(--cream); margin-bottom: 0.1rem; }
+.ob-ref { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+.ob-body {
+  display: none;
+  padding: 0.8rem 1.2rem 1rem calc(36px + 2rem);
+  background: var(--ink2);
+  border: 1px solid var(--gold);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: -0.6rem;
+  font-size: 0.82rem;
+  color: var(--cream2);
+  line-height: 1.7;
+}
+.ob-body.open { display: block; }
+.ob-body .ai-note {
+  margin-top: 0.7rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(201,144,42,0.07);
+  border-left: 2px solid var(--gold);
+  font-size: 0.79rem;
+  color: var(--cream2);
+  border-radius: 0 2px 2px 0;
+}
+.ai-note-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.63rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+/* ── RIGHTS ── */
+.right-card {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 0.7rem;
+}
+.right-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
+.right-icon {
+  width: 32px; height: 32px;
+  border-radius: 2px;
+  background: rgba(201,144,42,0.12);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.right-title { font-weight: 500; font-size: 0.9rem; color: var(--cream); }
+.right-ref { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+.right-body { font-size: 0.82rem; color: var(--cream2); line-height: 1.7; }
+.timeline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(26,122,74,0.15);
+  border: 1px solid rgba(26,122,74,0.3);
+  color: #5BC891;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  padding: 2px 10px;
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+
+/* ── AI SYSTEMS ── */
+.ai-lifecycle {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.ai-stage {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.ai-stage:hover, .ai-stage.active { border-color: var(--gold); }
+.ai-stage-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); margin-bottom: 0.3rem; }
+.ai-stage-name { font-weight: 500; font-size: 0.88rem; color: var(--cream); margin-bottom: 0.4rem; }
+.ai-stage-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  background: var(--ink3);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+.ai-detail {
+  background: var(--ink2);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  display: none;
+  margin-bottom: 1rem;
+}
+.ai-detail.active { display: block; }
+.ai-detail h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+.ai-rule {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.82rem;
+}
+.ai-rule:last-child { border-bottom: none; }
+.ai-rule-ref {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  background: rgba(201,144,42,0.1);
+  padding: 2px 7px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.ai-rule-text { color: var(--cream2); line-height: 1.6; }
+
+/* ── CHANGES ── */
+.change-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 0.6rem;
+}
+.change-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: fit-content;
+  margin-top: 1px;
+}
+.badge-new { background: rgba(26,122,74,0.2); border: 1px solid rgba(26,122,74,0.3); color: #5BC891; }
+.badge-changed { background: rgba(201,144,42,0.15); border: 1px solid var(--border); color: var(--gold-light); }
+.badge-removed { background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); color: #E8766A; }
+.change-main {}
+.change-title { font-weight: 500; font-size: 0.88rem; color: var(--cream); margin-bottom: 0.3rem; }
+.change-desc { font-size: 0.82rem; color: var(--cream2); line-height: 1.6; }
+.change-impact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+/* ── CHECKLIST ── */
+.checklist-filter {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+}
+.filter-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 5px 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-btn:hover { color: var(--cream); }
+.filter-btn.active { background: rgba(201,144,42,0.15); border-color: var(--gold); color: var(--gold-light); }
+.check-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.85rem 1.1rem;
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.check-item.done { opacity: 0.5; }
+.check-item.done .check-box { background: var(--safe); border-color: var(--safe); }
+.check-box {
+  width: 20px; height: 20px;
+  border: 1px solid var(--muted);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.15s;
+}
+.check-text {}
+.check-title { font-size: 0.85rem; color: var(--cream); font-weight: 400; }
+.check-meta {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.3rem;
+}
+.check-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  background: var(--ink3);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 1px 7px;
+  border-radius: 2px;
+}
+.progress-bar-wrap {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.78rem; color: var(--muted); margin-bottom: 0.5rem;
+}
+.progress-track {
+  height: 4px;
+  background: var(--ink3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+.score-num { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--gold); }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-text { font-size: 0.75rem; color: var(--muted); }
+.footer-author { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.4rem; }
+  .def-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .content { padding: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-flag">🇱🇰</div>
+    <div class="header-text">
+      <div class="eyebrow">Sri Lanka · Data Protection Law</div>
+      <h1>Personal Data Protection Act<br>Interactive Reference Guide</h1>
+      <div class="header-meta">
+        <span class="meta-pill">Act No. 9 of 2022</span>
+        <span class="meta-pill">Amended No. 22 of 2025</span>
+        <span class="penalty-badge">Max Penalty · Rs. 10 million</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showTab('overview', this)">Overview</button>
+  <button class="nav-btn" onclick="showTab('obligations', this)">Obligations</button>
+  <button class="nav-btn" onclick="showTab('rights', this)">Data Subject Rights</button>
+  <button class="nav-btn" onclick="showTab('ai', this)">AI Systems Map</button>
+  <button class="nav-btn" onclick="showTab('changes', this)">2025 Changes</button>
+  <button class="nav-btn" onclick="showTab('checklist', this)">Compliance Checklist</button>
+</nav>
+
+<div class="content">
+
+<!-- ══ OVERVIEW ══ -->
+<div id="tab-overview" class="tab active">
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">Original Act</div>
+      <div class="stat-value">March 2022</div>
+      <div class="stat-sub">Certified 19 March 2022</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Latest Amendment</div>
+      <div class="stat-value">Oct 2025</div>
+      <div class="stat-sub">Act No. 22 of 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Max Penalty</div>
+      <div class="stat-value">Rs. 10M</div>
+      <div class="stat-sub">Doubled for repeat violations</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Response Window</div>
+      <div class="stat-value">1 Month</div>
+      <div class="stat-sub">Extendable to 3 months (2025)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Child Definition</div>
+      <div class="stat-value">Under 16</div>
+      <div class="stat-sub">Requires parental consent</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Regulator</div>
+      <div class="stat-value">DPA-SL</div>
+      <div class="stat-sub">Data Protection Authority</div>
+    </div>
+  </div>
+
+  <div class="section-label">Scope — Who does this apply to?</div>
+  <div class="card">
+    <p>The Act covers any processing of personal data where: (a) processing takes place wholly or partly within Sri Lanka; or (b) the controller/processor is domiciled, incorporated, or established in Sri Lanka; offers goods or services to people in Sri Lanka; or specifically monitors behaviour of people in Sri Lanka.</p>
+    <p>It does not apply to purely personal or household use of data, or to data that is not personal data. The 2025 amendment narrowed the definition of "public authority" — public corporations and Companies Act companies are no longer classified as public authorities under PDPA.</p>
+  </div>
+
+  <div class="section-label">Key definitions</div>
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Personal Data</div>
+      <div class="def-def">Any information that identifies a data subject directly or indirectly — by name, ID number, financial data, location, or factors specific to physical, physiological, genetic, psychological, economic, cultural or social identity.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Controller</div>
+      <div class="def-def">Any natural/legal person or entity that determines the purposes and means of processing. Sole or joint. Responsible for all obligations under Part I. Not to be confused with a processor.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Processor</div>
+      <div class="def-def">A separate entity that processes data on behalf of a controller, under the controller's written instructions. Example: Hospital A stores patient records with Cloud Provider B — B is the processor. Employees of the controller are not processors.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Special Categories</div>
+      <div class="def-def">Racial/ethnic origin, political opinions, religious/philosophical beliefs, genetic data, biometric data (for unique identification), health data, sex life/orientation, criminal data, and data relating to children. Requires stricter lawful basis.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Profiling</div>
+      <div class="def-def">Processing personal data to evaluate, analyse or predict aspects concerning a data subject's performance, economic situation, health, preferences, interests, credibility, behaviour, habits, location or movements.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Consent</div>
+      <div class="def-def">Freely given, specific, informed and unambiguous indication — by written declaration or affirmative action — that the data subject agrees to processing. Cannot be bundled with unrelated contract terms. Always revocable.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Third Country (2025)</div>
+      <div class="def-def">Any territory or country other than Sri Lanka. Simplified by 2025 amendment — the old adequacy decision framework was replaced by a compliance-and-safeguards model.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Commencement timeline</div>
+  <div class="timeline">
+    <div class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-date">19 March 2022</div>
+      <div class="t-title">Act certified by Speaker</div>
+      <div class="t-desc">Section 1 comes into operation. Rest of the Act is staged.</div>
+    </div>
+    <div class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-date">2022–2024</div>
+      <div class="t-title">Parts V, VI, VIII, IX, X operative</div>
+      <div class="t-desc">Data Protection Authority establishment provisions, fund, miscellaneous provisions. DPA constitution and governance began.</div>
+    </div>
+    <div class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-date">30 October 2025</div>
+      <div class="t-title">Amendment Act No. 22 of 2025 certified</div>
+      <div class="t-desc">Major changes to commencement, cross-border flows, DPO scope, appeal process, and response timelines. Minister now has flexible power to appoint commencement dates by Gazette Order.</div>
+    </div>
+    <div class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-date">Within 36 months of Part V commencement</div>
+      <div class="t-title">First Rules deadline</div>
+      <div class="t-desc">Authority must make first rules covering data subject rights procedures, refusal criteria, and other prescribed matters. Extended from 24 to 36 months by 2025 amendment.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OBLIGATIONS ══ -->
+<div id="tab-obligations" class="tab">
+  <div class="section-label">Seven controller obligations (Sections 5–11)</div>
+  <div class="ob-grid">
+    <div>
+      <div class="ob-item" onclick="toggleOb(this, 'ob1')">
+        <div class="ob-num">S.5</div>
+        <div class="ob-main">
+          <div class="ob-title">Process lawfully</div>
+          <div class="ob-ref">Must satisfy a condition in Schedule I, II, III, or IV</div>
+        </div>
+      </div>
+      <div id="ob1" class="ob-body">
+        There are six lawful bases in Schedule I: (a) consent, (b) contract performance, (c) legal obligation, (d) vital interests/emergency, (e) public task, and (f) legitimate interests. For special categories, Schedule II applies — stricter. Consent under Schedule III must meet four conditions: demonstrable, clearly distinguishable, free of charge to withdraw, and subject must be informed of the right to withdraw before consenting.
+        <div class="ai-note"><div class="ai-note-label">AI practitioner note</div>Using training data scraped from public sources may only be lawful under "legitimate interests" — but this is overridden if the data subject's interests take precedence. Do not assume public data is freely usable. Biometric data for model training requires Schedule II basis.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ob-item" onclick="toggleOb(this, 'ob2')">
+        <div class="ob-num">S.6</div>
+        <div class="ob-main">
+          <div class="ob-title">Define and stick to purpose</div>
+          <div class="ob-ref">Purpose must be specified, explicit, and legitimate</div>
+        </div>
+      </div>
+      <div id="ob2" class="ob-body">
+        Collected data cannot be reused for incompatible purposes. Exceptions exist for archiving, scientific research, historical research, and statistics — but these require appropriate safeguards under Section 10.
+        <div class="ai-note"><div class="ai-note-label">AI practitioner note</div>Training an AI model on customer data collected for "service delivery" may breach this if the model serves a different purpose. Always document the ML use case as a specific purpose at collection time, or obtain fresh consent before repurposing data.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ob-item" onclick="toggleOb(this, 'ob3')">
+        <div class="ob-num">S.7</div>
+        <div class="ob-main">
+          <div class="ob-title">Data minimisation</div>
+          <div class="ob-ref">Adequate, relevant, and proportionate only</div>
+        </div>
+      </div>
+      <div id="ob3" class="ob-body">
+        Collect and process only what is necessary for the defined purpose. There is no obligation to collect more data simply because it might improve processing outcomes.
+        <div class="ai-note"><div class="ai-note-label">AI practitioner note</div>Model performance is not a justification for collecting excess data. If you can achieve your task with anonymised or aggregated data, you may be required to do so. Document your minimum viable data set.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ob-item" onclick="toggleOb(this, 'ob4')">
+        <div class="ob-num">S.8</div>
+        <div class="ob-main">
+          <div class="ob-title">Ensure accuracy</div>
+          <div class="ob-ref">Keep up to date; erase or rectify without undue delay</div>
+        </div>
+      </div>
+      <div id="ob4" class="ob-body">
+        Every reasonable step must be taken to erase or rectify inaccurate or outdated data. "Undue delay" is not defined in the Act — the Authority will define standards via guidelines.
+        <div class="ai-note"><div class="ai-note-label">AI practitioner note</div>ML models trained on stale data may produce decisions based on outdated personal information. If your model uses personal data as features, you must keep a mechanism to update or remove stale records from training pipelines.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ob-item" onclick="toggleOb(this, 'ob5')">
+        <div class="ob-num">S.9</div>
+        <div class="ob-main">
+          <div class="ob-title">Limit retention</div>
+          <div class="ob-ref">No longer than necessary for the defined purpose</div>
+        </div>
+      </div>
+      <div id="ob5" class="ob-body">
+        Data may not be retained in identifiable form beyond what is needed. Research and archiving exceptions exist but require appropriate safeguards (Section 10).
+        <div class="ai-note"><div class="ai-note-label">AI practitioner note</div>Retaining a labelled training dataset indefinitely is a compliance risk. Define and document a retention schedule. Consider whether the trained model itself constitutes "stored personal data" — this is a live legal question across jurisdictions.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ob-item" onclick="toggleOb(this, 'ob6')">
+        <div class="ob-num">S.10</div>
+        <div class="ob-main">
+          <div class="ob-title">Integrity and confidentiality</div>
+          <div class="ob-ref">Encryption, pseudonymisation, anonymisation, access controls</div>
+        </div>
+      </div>
+      <div id="ob6" class="ob-body">
+        Technical and organisational measures must prevent unauthorised or unlawful processing, and prevent loss, destruction, or damage. The Act explicitly names encryption, pseudonymisation, anonymisation, and access controls as valid measures.
+        <div class="ai-note"><div class="ai-note-label">AI practitioner note</div>Model outputs that reveal personal data (e.g. memorisation in LLMs) may breach this. Anonymisation of training data must be genuine — re-identifiable pseudonymised data is still personal data. Federated learning and differential privacy are relevant technical controls.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ob-item" onclick="toggleOb(this, 'ob7')">
+        <div class="ob-num">S.11</div>
+        <div class="ob-main">
+          <div class="ob-title">Transparency</div>
+          <div class="ob-ref">Provide Schedule V information in clear, accessible form</div>
+        </div>
+      </div>
+      <div id="ob7" class="ob-body">
+        Data subjects must receive: controller identity, DPO contact, purposes and legal basis, special categories being collected, consent withdrawal procedure, recipients and third parties, cross-border transfer info, retention period, rights and appeal information, whether provision is mandatory or optional, and details of any automated decision-making including profiling logic.
+        <div class="ai-note"><div class="ai-note-label">AI practitioner note</div>If your system makes automated decisions, you must disclose "reasonably meaningful information about the logic involved." This is a direct obligation to provide AI explainability. Black-box models deployed against Sri Lankan data subjects may breach this provision.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Data Protection Management Programme (Section 12)</div>
+  <div class="card">
+    <p>Every controller must implement a DPMP — an internal programme that maintains catalogued records of how obligations are met, runs internal oversight, handles complaints and breach identification, conducts DPIAs, and facilitates data subject rights. The programme must be updated periodically. The 2025 amendment removed the requirement for the Authority to issue guidelines on DPMP directly — this is now handled under new Section 51A's general guidelines power.</p>
+  </div>
+
+  <div class="section-label">Data Protection Officer (Section 20)</div>
+  <div class="card">
+    <p>A DPO is mandatory for: (a) any Ministry or government department; or (b) controllers/processors whose core activities involve systematic monitoring at scale, special categories at scale, or categories of processing that carry risk of harm as determined by the Authority. The 2025 amendment expanded the DPO definition to include third-party DPOs not directly employed by the controller or processor.</p>
+  </div>
+
+  <div class="section-label">Data Protection Impact Assessment (Section 24)</div>
+  <div class="card">
+    <p>A DPIA is required before processing that involves: (a) systematic and extensive evaluation of personal data or special categories including profiling; (b) systematic monitoring of publicly accessible areas or telecom networks; or (c) activities prescribed by rules based on scope and risk. The DPIA must contain the proposed safeguards. The 2025 amendment changed submission: the controller now only submits the DPIA to the Authority on written request — not mandatorily in advance.</p>
+  </div>
+
+  <div class="section-label">Data Breach Notification (Section 23)</div>
+  <div class="card">
+    <p>Controllers must notify the Authority of personal data breaches. The form, timing, and circumstances — including when data subjects themselves must be notified — will be defined by rules made by the Authority. No specific mandatory timeline is stated in the Act itself; watch for rules from the DPA.</p>
+  </div>
+</div>
+
+<!-- ══ RIGHTS ══ -->
+<div id="tab-rights" class="tab">
+  <div class="section-label">Five core rights for data subjects</div>
+
+  <div class="right-card">
+    <div class="right-header">
+      <div class="right-icon">👁</div>
+      <div>
+        <div class="right-title">Right of access</div>
+        <div class="right-ref">Section 13 · Schedule V</div>
+      </div>
+    </div>
+    <div class="right-body">The data subject may request confirmation of whether their data is processed, and obtain the full Schedule V information set. The controller must respond in writing within one month. The request is now free of charge under the 2025 amendment. The 2025 amendment also explicitly added Section 18 (automated decision review) to the list of requests covered by Section 17's response procedure.</div>
+    <div class="timeline-pill">Response: 1 month · Extendable to 3 months · Free of charge (2025)</div>
+  </div>
+
+  <div class="right-card">
+    <div class="right-header">
+      <div class="right-icon">↩</div>
+      <div>
+        <div class="right-title">Right to withdraw consent &amp; object to processing</div>
+        <div class="right-ref">Section 14</div>
+      </div>
+    </div>
+    <div class="right-body">Where processing is based on consent (Schedule I(a) or Schedule II(a)), the data subject may withdraw at any time — withdrawal does not affect lawfulness of prior processing. Where processing is based on public task or legitimate interests (Schedule I(e) or (f)), the data subject may request the controller to refrain from further processing. The 2025 amendment clarified the appeal grounds here.</div>
+    <div class="timeline-pill">Response: 1 month · Free of charge (2025)</div>
+  </div>
+
+  <div class="right-card">
+    <div class="right-header">
+      <div class="right-icon">✏️</div>
+      <div>
+        <div class="right-title">Right to rectification</div>
+        <div class="right-ref">Section 15</div>
+      </div>
+    </div>
+    <div class="right-body">Inaccurate or incomplete data must be corrected without undue delay on written request. The controller is not required to collect new data it would not otherwise process. If the data is held for evidentiary purposes under law, the controller must refrain from further processing it without first rectifying.</div>
+    <div class="timeline-pill">Response: 1 month · Free of charge (2025)</div>
+  </div>
+
+  <div class="right-card">
+    <div class="right-header">
+      <div class="right-icon">🗑</div>
+      <div>
+        <div class="right-title">Right to erasure</div>
+        <div class="right-ref">Section 16</div>
+      </div>
+    </div>
+    <div class="right-body">Data subjects may request erasure where: processing was carried out in contravention of obligations (Sections 5–11), the data subject withdraws consent, or a court or written law requires erasure. The controller may refuse on grounds including national security, legal proceedings, or technical feasibility — but must document reasons and inform the DPA on request.</div>
+    <div class="timeline-pill">Response: 1 month · Free of charge (2025)</div>
+  </div>
+
+  <div class="right-card">
+    <div class="right-header">
+      <div class="right-icon">🤖</div>
+      <div>
+        <div class="right-title">Right to review automated decisions</div>
+        <div class="right-ref">Section 18 · Amended 2025</div>
+      </div>
+    </div>
+    <div class="right-body">Where a controller makes a decision based solely on automated processing that creates or is likely to create an irreversible and continuous impact on the data subject's rights under the Constitution or any written law, the data subject may request a review. The 2025 amendment added "Constitution" to the scope — previously it only referenced "written law." Exceptions: where the automated decision is authorised by written law, authorised by the Authority, based on the data subject's own consent, or necessary for a contract — subject to Authority safeguards. This exception does not apply to special categories of personal data.</div>
+    <div class="timeline-pill">Response: 1 month · Free of charge (2025) · Now includes Constitutional rights</div>
+  </div>
+
+  <div class="section-label">Who can exercise rights? (Section 17(5))</div>
+  <div class="card">
+    <p>Rights may be exercised by: the data subject themselves; parents or legal guardians where the data subject is a minor; a court-appointed guardian where the data subject is physically or mentally unfit; a person duly authorised in writing; or an heir of a deceased data subject within 10 years of the date of death.</p>
+  </div>
+
+  <div class="section-label">When can a controller refuse? (Section 17(2))</div>
+  <div class="card">
+    <p>Grounds for refusal: national security, public order, an ongoing investigation or criminal proceedings, prevention/detection/prosecution of offences, rights of other persons, technical or operational infeasibility, inability to establish the data subject's identity, or a legal requirement to continue processing. All refusals must be recorded. The DPA may request these records.</p>
+  </div>
+
+  <div class="section-label">Appeals (Section 19 · Rewritten 2025)</div>
+  <div class="card">
+    <p>Where a controller refuses any request under Sections 13–18, the data subject may appeal to the Data Protection Authority. The Authority will investigate and determine whether the refusal was lawful — and inform both parties with reasons. Any party aggrieved by the DPA's decision may further appeal to the Court of Appeal within 30 days.</p>
+  </div>
+</div>
+
+<!-- ══ AI SYSTEMS ══ -->
+<div id="tab-ai" class="tab">
+  <div class="card">
+    <p>This section maps PDPA obligations to the phases of an AI system lifecycle. Click a phase to see the specific provisions that apply. This framing is designed for AI practitioners and solutions engineers building systems that process personal data belonging to Sri Lankan data subjects.</p>
+  </div>
+
+  <div class="section-label">AI system lifecycle × PDPA</div>
+  <div class="ai-lifecycle">
+    <div class="ai-stage active" onclick="showAiStage('ai-data')">
+      <div class="ai-stage-num">Phase 01</div>
+      <div class="ai-stage-name">Data collection &amp; preparation</div>
+      <div class="ai-stage-tags"><span class="tag">Lawful basis</span><span class="tag">Consent</span><span class="tag">Purpose</span></div>
+    </div>
+    <div class="ai-stage" onclick="showAiStage('ai-train')">
+      <div class="ai-stage-num">Phase 02</div>
+      <div class="ai-stage-name">Model training &amp; evaluation</div>
+      <div class="ai-stage-tags"><span class="tag">Minimisation</span><span class="tag">Retention</span><span class="tag">Special cats</span></div>
+    </div>
+    <div class="ai-stage" onclick="showAiStage('ai-deploy')">
+      <div class="ai-stage-num">Phase 03</div>
+      <div class="ai-stage-name">Deployment &amp; inference</div>
+      <div class="ai-stage-tags"><span class="tag">DPIA</span><span class="tag">Transparency</span><span class="tag">DPO</span></div>
+    </div>
+    <div class="ai-stage" onclick="showAiStage('ai-operate')">
+      <div class="ai-stage-num">Phase 04</div>
+      <div class="ai-stage-name">Operation &amp; decisions</div>
+      <div class="ai-stage-tags"><span class="tag">Automated decisions</span><span class="tag">Profiling</span><span class="tag">Rights</span></div>
+    </div>
+    <div class="ai-stage" onclick="showAiStage('ai-xborder')">
+      <div class="ai-stage-num">Phase 05</div>
+      <div class="ai-stage-name">Cross-border &amp; cloud</div>
+      <div class="ai-stage-tags"><span class="tag">Cross-border</span><span class="tag">Cloud inference</span><span class="tag">Third party</span></div>
+    </div>
+  </div>
+
+  <div id="ai-data" class="ai-detail active">
+    <h3>Data collection &amp; preparation</h3>
+    <div class="ai-rule"><span class="ai-rule-ref">S.5 + Sch.I</span><span class="ai-rule-text">Every dataset used must have a valid lawful basis. Consent (Sch.I(a)) requires freely given, specific, informed, and unambiguous agreement. Public data does not automatically satisfy this. Scraping Sri Lankan data from the web may only be lawful under legitimate interests — and only if data subject interests do not override.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.6</span><span class="ai-rule-text">The purpose of processing must be defined before collection. Collecting data "for future AI use" is not a specific or explicit purpose. Document the intended ML task with precision.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.5 + Sch.II</span><span class="ai-rule-text">Biometric data (facial images, iris data, fingerprints), genetic data, health data, racial/ethnic data — all are special categories. Training a facial recognition or health prediction model requires a Sch.II lawful basis, not just Sch.I.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">Sch.III</span><span class="ai-rule-text">Where consent is the lawful basis, you must demonstrate consent was given, cannot bundle it with contract acceptance, must allow withdrawal at any time, and must inform subjects of their withdrawal right before collecting.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.11 + Sch.V</span><span class="ai-rule-text">At collection time, data subjects must be told: the purpose, the legal basis, the categories of data, any profiling or automated decision-making, the retention period, and the right to withdraw consent. If collecting indirectly (web scrape, data broker), you must notify within one month.</span></div>
+  </div>
+
+  <div id="ai-train" class="ai-detail">
+    <h3>Model training &amp; evaluation</h3>
+    <div class="ai-rule"><span class="ai-rule-ref">S.7</span><span class="ai-rule-text">Only the data necessary for the specific ML task may be used. Adding additional features "because they might improve accuracy" without specific justification may breach the data minimisation obligation. Feature selection must be documented and defensible.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.9</span><span class="ai-rule-text">Retention of labelled training datasets must have a defined end point. Indefinitely holding personal data in training corpora is non-compliant. Build a data retention and deletion schedule into your ML pipeline documentation.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.10</span><span class="ai-rule-text">Training data must be secured — encryption at rest, access controls, pseudonymisation where feasible. A model that memorises and can reproduce personal data (e.g. a generative model) may constitute a breach of integrity and confidentiality obligations. Test for memorisation.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.8</span><span class="ai-rule-text">If a data subject exercises the right to rectification, your training data pipeline may need to update or remove that record. Consider whether re-training is required after corrections. Document how accuracy obligations are satisfied across training data updates.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.12</span><span class="ai-rule-text">Your DPMP must include records of all processing activities — including ML training runs that use personal data. This is an audit trail requirement. Log what data was used, for what purpose, under which lawful basis, and for how long it was retained.</span></div>
+  </div>
+
+  <div id="ai-deploy" class="ai-detail">
+    <h3>Deployment &amp; inference</h3>
+    <div class="ai-rule"><span class="ai-rule-ref">S.24</span><span class="ai-rule-text">A DPIA is mandatory before deploying a system that involves systematic and extensive evaluation or profiling of personal data. This includes most production ML models that score, rank, or classify individuals. Run the DPIA before deployment, not after.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.20</span><span class="ai-rule-text">If your system's core activity involves systematic monitoring at scale or special categories at scale, a Data Protection Officer must be designated. The DPO reviews DPIAs and advises on compliance. They can now be a third-party contractor under the 2025 amendment.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.11 + Sch.V(m)</span><span class="ai-rule-text">At deployment, if the system makes automated decisions affecting users, you must proactively disclose the existence of automated decision-making, the logic involved, and the significance and consequences of such processing. This is a direct explainability obligation. Explainability is not optional.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.23</span><span class="ai-rule-text">If a model is breached or produces outputs that constitute unauthorised disclosure of personal data, this is a data breach and must be reported to the DPA. Build breach detection into your inference pipeline monitoring.</span></div>
+  </div>
+
+  <div id="ai-operate" class="ai-detail">
+    <h3>Operation &amp; automated decisions</h3>
+    <div class="ai-rule"><span class="ai-rule-ref">S.18 (2025)</span><span class="ai-rule-text">Where a system makes decisions based solely on automated processing that create an irreversible and continuous impact on data subject rights (under the Constitution or written law), data subjects have the right to request a human review. Credit decisions, hiring filters, insurance pricing, and public service eligibility are clear examples.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.18(2)</span><span class="ai-rule-text">The automated decision review right does not apply where: the decision is authorised by law, authorised by the Authority, based on data subject consent, or necessary for contract performance — but safeguards set by the Authority still apply in all cases. Note: this exception is excluded for special categories of personal data.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">Sch.I(f) def.</span><span class="ai-rule-text">Profiling — using ML to evaluate performance, economic situation, health, preferences, credibility, behaviour, habits, or location — must have a lawful basis, respect data minimisation, and satisfy transparency requirements. Document every feature used in a profiling model against these obligations.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.15, S.16</span><span class="ai-rule-text">When a data subject exercises rights to rectification or erasure, your system must be capable of acting on these requests without undue delay. For production ML systems, define what "rectification" and "erasure" mean — including in any downstream model predictions based on that data.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.17(1) 2025</span><span class="ai-rule-text">Responses to data subject requests must be provided within one month. Extensions are possible (to a maximum of three months total) where reasons are given. All responses and extensions must be free of charge. Build a request management workflow into operations.</span></div>
+  </div>
+
+  <div id="ai-xborder" class="ai-detail">
+    <h3>Cross-border &amp; cloud processing</h3>
+    <div class="ai-rule"><span class="ai-rule-ref">S.26 (2025)</span><span class="ai-rule-text">Cross-border data flows are now governed by a compliance-and-safeguards model. The controller or processor must ensure compliance with all obligations under the Act, and adopt instruments specified by the DPA to ensure binding commitments from the overseas recipient. The old adequacy decision framework has been removed.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.26(3)</span><span class="ai-rule-text">Even without full safeguard instruments, cross-border transfer is permitted where: the data subject explicitly consents after being informed of the risks; it is necessary for a contract; it is for legal claims; it is in the public interest; it is an emergency; or it is a pure transit of data through Sri Lanka.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.26(4)+(5)</span><span class="ai-rule-text">Public authorities face additional restriction: the Minister may prescribe categories of personal data that public authorities cannot transfer cross-border. This directly affects government digital transformation projects using foreign cloud ML platforms.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.21+S.22</span><span class="ai-rule-text">Where a cloud provider processes Sri Lankan personal data on behalf of a Sri Lankan controller, a written contract covering purpose, duration, nature, data type, and obligations is mandatory. The cloud provider must process only on written instructions. If the cloud provider acts outside those instructions, it becomes a controller itself.</span></div>
+    <div class="ai-rule"><span class="ai-rule-ref">S.22(3)+(4)</span><span class="ai-rule-text">If a cloud provider subcontracts processing (e.g. to an inference API provider), the same obligations apply to the sub-processor. The primary processor remains liable for the sub-processor's compliance failures. Review your cloud vendor chains carefully.</span></div>
+  </div>
+</div>
+
+<!-- ══ 2025 CHANGES ══ -->
+<div id="tab-changes" class="tab">
+  <div class="card" style="margin-bottom:1.5rem;">
+    <p>The Personal Data Protection (Amendment) Act No. 22 of 2025 was certified on 30 October 2025. Below are the ten most significant changes and their practical impact.</p>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-main">
+      <div class="change-title">Commencement — flexible Ministerial power replaces fixed windows</div>
+      <div class="change-desc">Section 1(3) was rewritten. The original Act required commencement no earlier than 18 months and no later than 36 months from Speaker certification. The amendment removes these windows and gives the Minister full discretion to appoint commencement dates by Gazette Order. Subsections (4) and (5) were repealed entirely.</div>
+      <div class="change-impact">Impact · S.1 · Affects all stakeholders — removes certainty on implementation timelines</div>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-main">
+      <div class="change-title">Response to data subject requests — 1 month, extendable, free</div>
+      <div class="change-desc">Section 17(1) was rewritten. The original 21 working-day window is replaced by one calendar month (extendable by two more months with notice). Subsection (6) now makes all requests free of charge by default — the original fee-charging provision was removed. The Authority may later define exceptions by rules.</div>
+      <div class="change-impact">Impact · S.17 · Systems and operational teams must build request workflows to meet 1-month deadline</div>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-title">Automated decisions now cover Constitutional rights</div>
+    <div class="change-desc">Section 18(1) previously covered decisions with impact on rights under "any written law." The 2025 amendment adds "the Constitution." This expands the right to human review to cover fundamental rights decisions (Article 12 equality, Article 14 freedoms) made by automated systems.</div>
+    <div class="change-impact">Impact · S.18 · Critical for government and public sector AI systems</div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-title">DPO scope — third-party DPOs now permitted; public corporations excluded</div>
+    <div class="change-desc">Section 20 was amended on two dimensions. First, DPOs can now be third parties not directly employed by the controller or processor. Second, the mandatory DPO requirement for "public corporations" (subsection 1(a)) was narrowed to Ministries and government departments only — public corporations are no longer automatically required to appoint a DPO under this provision.</div>
+    <div class="change-impact">Impact · S.20 · Opens market for DPO-as-a-service; reduces burden on public corporations</div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-title">DPIA submission — now on-request only</div>
+    <div class="change-desc">Section 24(5) previously required controllers to submit DPIAs proactively to the DPA. The amendment changes this to submission only on written request from the Authority. This reduces administrative burden while preserving the DPA's oversight power.</div>
+    <div class="change-impact">Impact · S.24 · Lowers compliance cost; DPA retains review rights</div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-removed">Removed</span>
+    <div class="change-main">
+      <div class="change-title">Prior consultation — provisions substantially removed</div>
+      <div class="change-desc">Section 25 originally had seven subsections requiring controllers to consult the Authority where DPIA risks could not be mitigated. The amendment repeals subsections (2) through (6) — removing the formal prior consultation mechanism. The national security processing provision in subsection (7) is retained but simplified.</div>
+      <div class="change-impact">Impact · S.25 · Reduces regulatory bottleneck before high-risk processing</div>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-main">
+      <div class="change-title">Cross-border data flows — adequacy decision framework replaced</div>
+      <div class="change-desc">Section 26 was completely rewritten. The original framework distinguished between "adequacy decision" countries (Minister-prescribed) and others. The 2025 version removes this distinction entirely. All cross-border flows must comply with the Act's obligations plus DPA-specified instruments ensuring binding commitments from foreign recipients. Public authorities face additional restrictions via Ministerial prescription.</div>
+      <div class="change-impact">Impact · S.26 · Major change — simplifies framework but requires due diligence on all foreign data recipients</div>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-new">New</span>
+    <div class="change-main">
+      <div class="change-title">New Section 51A — Authority's guidelines power formalised</div>
+      <div class="change-desc">A new Section 51A was inserted giving the Authority an express power to issue guidelines on any matter specified in the Act, including sectoral guidelines formulated by advisory committees and DPMP matters. This consolidates the guidelines function that was previously scattered across individual sections.</div>
+      <div class="change-impact">Impact · S.51A · Watch for sectoral guidelines — these will shape compliance in banking, health, telecom</div>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-main">
+      <div class="change-title">Definition of "public authority" narrowed</div>
+      <div class="change-desc">The 2025 amendment redefines "public authority" to mean only Ministries, Departments, Provincial Councils, local authorities, and Ministry/Department branches of Provincial Councils. It explicitly excludes: (a) public corporations; and (b) companies incorporated under the Companies Act No. 7 of 2007. This affects which entities face stricter cross-border restrictions and mandatory DPO requirements.</div>
+      <div class="change-impact">Impact · S.56 · State-owned enterprises and government companies now have less restrictive obligations</div>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <span class="change-badge badge-changed">Changed</span>
+    <div class="change-main">
+      <div class="change-title">First rules deadline extended — 24 months → 36 months</div>
+      <div class="change-desc">Section 52(2) was amended to extend the deadline for the Authority to make its first rules from 24 months to 36 months from the date of coming into operation of Part V. This gives the DPA more time to consult and develop procedural rules for data subject rights and refusal criteria.</div>
+      <div class="change-impact">Impact · S.52 · Watch the Gazette — operational rules on rights procedures will define practical compliance</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CHECKLIST ══ -->
+<div id="tab-checklist" class="tab">
+  <div class="progress-bar-wrap">
+    <div class="progress-label"><span>Compliance progress</span><span class="score-num" id="progress-score">0 / 20 items</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div class="checklist-filter">
+    <button class="filter-btn active" onclick="filterCheck('all', this)">All</button>
+    <button class="filter-btn" onclick="filterCheck('controller', this)">Controller</button>
+    <button class="filter-btn" onclick="filterCheck('ai', this)">AI Systems</button>
+    <button class="filter-btn" onclick="filterCheck('dpo', this)">DPO</button>
+    <button class="filter-btn" onclick="filterCheck('ops', this)">Operations</button>
+  </div>
+  <div id="check-list">
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Identify every data processing activity and document the lawful basis for each (Schedule I or II)</div>
+        <div class="check-meta"><span class="check-tag">S.5</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Define specific, explicit purposes for each processing activity before collection begins</div>
+        <div class="check-meta"><span class="check-tag">S.6</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Conduct a data minimisation review — confirm only necessary data is collected for each purpose</div>
+        <div class="check-meta"><span class="check-tag">S.7</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Implement and document a data retention and deletion schedule for all personal data</div>
+        <div class="check-meta"><span class="check-tag">S.9</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Apply technical security measures: encryption at rest, access controls, pseudonymisation where applicable</div>
+        <div class="check-meta"><span class="check-tag">S.10</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Update privacy notices to include all Schedule V fields — including any automated decision-making logic</div>
+        <div class="check-meta"><span class="check-tag">S.11 + Sch.V</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Establish a Data Protection Management Programme (DPMP) with catalogued records and internal oversight</div>
+        <div class="check-meta"><span class="check-tag">S.12</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="controller" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Draft a data processing agreement for every processor — covering purpose, duration, nature, and obligations</div>
+        <div class="check-meta"><span class="check-tag">S.21</span><span class="check-tag">controller</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ops" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Build a data subject request workflow capable of responding within one calendar month, free of charge</div>
+        <div class="check-meta"><span class="check-tag">S.17 (2025)</span><span class="check-tag">ops</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ops" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Create a documented data breach response procedure with DPA notification steps and subject notification criteria</div>
+        <div class="check-meta"><span class="check-tag">S.23</span><span class="check-tag">ops</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ops" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Review all cross-border data transfers — ensure compliance obligations and binding recipient safeguards are in place</div>
+        <div class="check-meta"><span class="check-tag">S.26 (2025)</span><span class="check-tag">ops</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="dpo" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Determine whether a DPO must be appointed — check if core activities involve systematic monitoring or special categories at scale</div>
+        <div class="check-meta"><span class="check-tag">S.20</span><span class="check-tag">dpo</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="dpo" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Publish DPO contact details and register them with the Data Protection Authority</div>
+        <div class="check-meta"><span class="check-tag">S.20(4)</span><span class="check-tag">dpo</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ai" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Document the lawful basis for every personal data source used in AI training — do not assume public data is free to use</div>
+        <div class="check-meta"><span class="check-tag">S.5</span><span class="check-tag">ai</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ai" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Run a DPIA before deploying any model that profiles, scores, or systematically evaluates individuals</div>
+        <div class="check-meta"><span class="check-tag">S.24</span><span class="check-tag">ai</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ai" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Confirm biometric data, genetic data, and health data processing has a Schedule II lawful basis — Schedule I is insufficient</div>
+        <div class="check-meta"><span class="check-tag">S.5 + Sch.II</span><span class="check-tag">ai</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ai" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Build a human review mechanism for any automated decisions with irreversible or continuous impact on data subject rights</div>
+        <div class="check-meta"><span class="check-tag">S.18 (2025)</span><span class="check-tag">ai</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ai" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Publish a plain-language explanation of the logic behind any automated decision system visible to data subjects</div>
+        <div class="check-meta"><span class="check-tag">S.11 + Sch.V(m)</span><span class="check-tag">ai</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ai" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">Test generative or retrieval-augmented models for personal data memorisation — treat memorisation as a potential S.10 breach</div>
+        <div class="check-meta"><span class="check-tag">S.10</span><span class="check-tag">ai</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-cat="ai" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <div class="check-title">For cloud-based ML inference involving Sri Lankan data, verify the cloud provider contract meets S.21/S.22 processor requirements and includes cross-border safeguards per S.26 (2025)</div>
+        <div class="check-meta"><span class="check-tag">S.21 + S.22 + S.26</span><span class="check-tag">ai</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-text">Sources: Personal Data Protection Act No. 9 of 2022 · Personal Data Protection (Amendment) Act No. 22 of 2025<br>This resource is for reference and study. It is not legal advice.</div>
+  <div class="footer-author">Compiled by Kalana Geethmal Kumarage · AI &amp; Solutions Engineer</div>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleOb(el, bodyId) {
+  const body = document.getElementById(bodyId);
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.ob-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.ob-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); el.classList.add('open'); }
+}
+
+function showAiStage(id) {
+  document.querySelectorAll('.ai-stage').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.ai-detail').forEach(d => d.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  el.querySelector('.check-box').textContent = el.classList.contains('done') ? '✓' : '';
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('#check-list .check-item:not([style*="none"])').length;
+  const done = document.querySelectorAll('#check-list .check-item.done:not([style*="none"])').length;
+  document.getElementById('progress-score').textContent = done + ' / ' + total + ' items';
+  document.getElementById('progress-fill').style.width = (total > 0 ? (done / total * 100) : 0).toFixed(0) + '%';
+}
+
+function filterCheck(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.check-item').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+  updateProgress();
+}
+
+/* ── CHATBOT ── */
+const WORKER_URL = 'https://pdpa-gemini-proxy.kalanageethmal-learn.workers.dev';
+let chatHistory = [];
+let chatOpen = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-panel').style.display = chatOpen ? 'flex' : 'none';
+  document.getElementById('chat-fab-icon').textContent = chatOpen ? '✕' : '💬';
+  if (chatOpen) document.getElementById('chat-input').focus();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  appendMessage('user', msg);
+  input.value = '';
+  setLoading(true);
+
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg, history: chatHistory })
+    });
+    const data = await res.json();
+    const reply = data.reply || 'Sorry, I could not get a response.';
+    chatHistory.push({ role: 'user', parts: [{ text: msg }] });
+    chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+    appendMessage('bot', reply);
+  } catch (e) {
+    appendMessage('bot', 'Connection error. Please try again.');
+  }
+  setLoading(false);
+}
+
+function appendMessage(role, text) {
+  const log = document.getElementById('chat-log');
+  const div = document.createElement('div');
+  div.className = 'chat-msg chat-msg-' + role;
+  div.textContent = text;
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+}
+
+function setLoading(on) {
+  document.getElementById('chat-loading').style.display = on ? 'block' : 'none';
+  document.getElementById('chat-send').disabled = on;
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.activeElement.id === 'chat-input') sendMessage();
+});
+</script>
+
+<!-- Chat FAB -->
+<button id="chat-fab" onclick="toggleChat()" title="Ask about PDPA">
+  <span id="chat-fab-icon">💬</span>
+</button>
+
+<!-- Chat Panel -->
+<div id="chat-panel">
+  <div class="chat-header">
+    <span>PDPA Assistant</span>
+    <button onclick="toggleChat()">✕</button>
+  </div>
+  <div id="chat-log">
+    <div class="chat-msg chat-msg-bot">Hello! Ask me anything about the Sri Lanka Personal Data Protection Act.</div>
+  </div>
+  <div id="chat-loading" style="display:none; padding: 0.4rem 1rem; font-size:0.75rem; color:var(--muted);">Thinking…</div>
+  <div class="chat-footer">
+    <input id="chat-input" type="text" placeholder="Ask a PDPA question…" />
+    <button id="chat-send" onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<style>
+#chat-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+#chat-fab:hover { background: var(--gold-light); }
+
+#chat-panel {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 5.5rem;
+  right: 2rem;
+  width: 340px;
+  max-height: 480px;
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  z-index: 999;
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--ink3);
+  border-bottom: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+}
+.chat-header button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.chat-header button:hover { color: var(--cream); }
+
+#chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+#chat-log::-webkit-scrollbar { width: 4px; }
+#chat-log::-webkit-scrollbar-thumb { background: var(--ink3); border-radius: 2px; }
+
+.chat-msg {
+  max-width: 85%;
+  padding: 0.55rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.chat-msg-user {
+  background: var(--gold);
+  color: var(--ink);
+  align-self: flex-end;
+}
+.chat-msg-bot {
+  background: var(--ink3);
+  color: var(--cream2);
+  align-self: flex-start;
+  border: 1px solid var(--border);
+}
+
+.chat-footer {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-top: 1px solid var(--border);
+  background: var(--ink2);
+}
+#chat-input {
+  flex: 1;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.45rem 0.7rem;
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  outline: none;
+}
+#chat-input:focus { border-color: var(--gold); }
+#chat-send {
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 4px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
+}
+#chat-send:hover { background: var(--gold-light); }
+#chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+</style>
+</body>
+</html>
