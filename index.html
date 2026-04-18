@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PDPA Sri Lanka — Interactive Reference</title>
+<meta name="description" content="Interactive reference guide for Sri Lanka Personal Data Protection Act No. 9 of 2022 and the 2025 Amendment Act No. 22. Covers controller obligations, data subject rights, AI systems, and a compliance checklist.">
+<meta property="og:title" content="PDPA Sri Lanka — Interactive Reference">
+<meta property="og:description" content="Interactive reference guide for Sri Lanka's Personal Data Protection Act — obligations, rights, AI systems map, and compliance checklist.">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -526,10 +530,124 @@ h1 {
 .footer-text { font-size: 0.75rem; color: var(--muted); }
 .footer-author { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold); }
 
+/* ── HOVER ENHANCEMENTS ── */
+.card { transition: border-color 0.2s; }
+.card:hover { border-color: rgba(201,144,42,0.32); }
+.stat-card { transition: border-color 0.2s, transform 0.2s; cursor: default; }
+.stat-card:hover { border-color: rgba(201,144,42,0.4); transform: translateY(-2px); }
+.right-card { transition: border-color 0.2s; }
+.right-card:hover { border-color: rgba(201,144,42,0.35); }
+
+/* ── TAB FADE ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.tab.active { animation: fadeUp 0.22s ease; }
+
+/* ── HEADER ACTIONS (downloads) ── */
+.header-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+  flex-wrap: wrap;
+}
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(201,144,42,0.1);
+  border: 1px solid rgba(201,144,42,0.3);
+  color: var(--gold-light);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  padding: 5px 13px;
+  border-radius: 2px;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: background 0.15s, border-color 0.15s;
+}
+.dl-btn:hover { background: rgba(201,144,42,0.2); border-color: var(--gold); }
+.dl-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+/* ── SOURCE DOCUMENT CARDS ── */
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.doc-card {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: border-color 0.15s;
+}
+.doc-card:hover { border-color: rgba(201,144,42,0.45); }
+.doc-icon {
+  width: 38px; height: 38px;
+  background: rgba(201,144,42,0.1);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.doc-info { flex: 1; min-width: 0; }
+.doc-title { font-size: 0.84rem; font-weight: 500; color: var(--cream); margin-bottom: 0.2rem; line-height: 1.4; }
+.doc-sub { font-family: 'DM Mono', monospace; font-size: 0.67rem; color: var(--muted); margin-bottom: 0.6rem; }
+.doc-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(201,144,42,0.1);
+  border: 1px solid var(--border);
+  color: var(--gold-light);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.67rem;
+  padding: 4px 11px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.doc-dl:hover { background: rgba(201,144,42,0.22); border-color: var(--gold); }
+.doc-dl svg { width: 10px; height: 10px; }
+
+/* ── BACK TO TOP ── */
+.back-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 34px; height: 34px;
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 0.95rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, border-color 0.15s;
+  z-index: 50;
+  text-decoration: none;
+}
+.back-top.visible { opacity: 1; pointer-events: auto; }
+.back-top:hover { border-color: var(--gold); }
+
+/* ── PROGRESS ANIMATION ── */
+@keyframes growBar { from { width: 0%; } }
+.progress-fill { animation: growBar 0.6s ease; }
+
 @media (max-width: 600px) {
   h1 { font-size: 1.4rem; }
   .def-item { grid-template-columns: 1fr; gap: 0.3rem; }
   .content { padding: 1.2rem; }
+  .back-top { bottom: 1rem; right: 1rem; }
 }
 </style>
 </head>
@@ -545,6 +663,16 @@ h1 {
         <span class="meta-pill">Act No. 9 of 2022</span>
         <span class="meta-pill">Amended No. 22 of 2025</span>
         <span class="penalty-badge">Max Penalty · Rs. 10 million</span>
+      </div>
+      <div class="header-actions">
+        <a class="dl-btn" href="Files/6242.pdf" download="PDPA-Act-No-9-of-2022.pdf" aria-label="Download Personal Data Protection Act No. 9 of 2022 PDF">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 1v7M3 5.5l3 3 3-3"/><path d="M1 10h10"/></svg>
+          Act No. 9 of 2022 (PDF)
+        </a>
+        <a class="dl-btn" href="Files/6384.pdf" download="PDPA-Amendment-Act-No-22-of-2025.pdf" aria-label="Download Personal Data Protection Amendment Act No. 22 of 2025 PDF">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 1v7M3 5.5l3 3 3-3"/><path d="M1 10h10"/></svg>
+          Amendment No. 22 of 2025 (PDF)
+        </a>
       </div>
     </div>
   </div>
@@ -563,6 +691,33 @@ h1 {
 
 <!-- ══ OVERVIEW ══ -->
 <div id="tab-overview" class="tab active">
+
+  <div class="section-label">Source documents</div>
+  <div class="doc-grid">
+    <div class="doc-card">
+      <div class="doc-icon" aria-hidden="true">📄</div>
+      <div class="doc-info">
+        <div class="doc-title">Personal Data Protection Act No. 9 of 2022</div>
+        <div class="doc-sub">Gazette Extra-Ordinary No. 6242 · 19 March 2022</div>
+        <a class="doc-dl" href="Files/6242.pdf" download="PDPA-Act-No-9-of-2022.pdf" aria-label="Download Act No. 9 of 2022 PDF">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 1v7M3 5.5l3 3 3-3"/><path d="M1 10h10"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+    <div class="doc-card">
+      <div class="doc-icon" aria-hidden="true">📄</div>
+      <div class="doc-info">
+        <div class="doc-title">Personal Data Protection (Amendment) Act No. 22 of 2025</div>
+        <div class="doc-sub">Gazette Extra-Ordinary No. 6384 · 30 October 2025</div>
+        <a class="doc-dl" href="Files/6384.pdf" download="PDPA-Amendment-Act-No-22-of-2025.pdf" aria-label="Download Amendment Act No. 22 of 2025 PDF">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 1v7M3 5.5l3 3 3-3"/><path d="M1 10h10"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+  </div>
+
   <div class="stat-grid">
     <div class="stat-card">
       <div class="stat-label">Original Act</div>
@@ -1217,6 +1372,8 @@ h1 {
   <div class="footer-author">Compiled by Kalana Geethmal Kumarage · AI &amp; Solutions Engineer</div>
 </div>
 
+<a class="back-top" id="back-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" aria-label="Back to top">↑</a>
+
 <script>
 function showTab(id, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1244,6 +1401,7 @@ function toggleCheck(el) {
   el.classList.toggle('done');
   el.querySelector('.check-box').textContent = el.classList.contains('done') ? '✓' : '';
   updateProgress();
+  saveChecklist();
 }
 
 function updateProgress() {
@@ -1257,14 +1415,35 @@ function filterCheck(cat, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.check-item').forEach(item => {
-    if (cat === 'all' || item.dataset.cat === cat) {
-      item.style.display = 'flex';
-    } else {
-      item.style.display = 'none';
-    }
+    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'flex' : 'none';
   });
   updateProgress();
 }
+
+function saveChecklist() {
+  const states = [...document.querySelectorAll('#check-list .check-item')].map(el => el.classList.contains('done'));
+  try { localStorage.setItem('pdpa_checklist_v1', JSON.stringify(states)); } catch (_) {}
+}
+
+function loadChecklist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('pdpa_checklist_v1') || '[]');
+    document.querySelectorAll('#check-list .check-item').forEach((el, i) => {
+      if (saved[i]) {
+        el.classList.add('done');
+        el.querySelector('.check-box').textContent = '✓';
+      }
+    });
+  } catch (_) {}
+  updateProgress();
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('back-top');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 300);
+});
+
+document.addEventListener('DOMContentLoaded', loadChecklist);
 </script>
 </body>
 </html>
